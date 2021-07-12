@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# Build directories
+build/
+out/
+
+# Mac os
+**/*.DS_Store
