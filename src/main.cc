@@ -40,7 +40,7 @@ int main()
 {
 	std::cout << "Launch the app..." << std::endl;
 
-	auto appName = "My app";
+	auto appName = "Bismuth - Vulkan";
 
 	try {
 		Console::Log("> Setup window.");
