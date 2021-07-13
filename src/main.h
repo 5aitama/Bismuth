@@ -15,4 +15,5 @@
 #include "core/vulkan/logical_device.h"
 #include "core/vulkan/swap_chain.h"
 #include "core/vulkan/image_views.h"
+#include "core/vulkan/render_pass.h"
 #include "core/vulkan/graphics_pipeline.h"

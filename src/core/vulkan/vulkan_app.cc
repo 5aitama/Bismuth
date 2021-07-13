@@ -4,6 +4,17 @@ VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) {
 };
 
 VulkanApp::~VulkanApp() {
+    if (graphicsPipeline != VK_NULL_HANDLE) {
+        vkDestroyPipeline(device, graphicsPipeline, nullptr);
+    }
+
+    if (pipelineLayout != VK_NULL_HANDLE) {
+        vkDestroyPipelineLayout(device, pipelineLayout, nullptr);
+    }
+
+    if (renderPass != VK_NULL_HANDLE) {
+        vkDestroyRenderPass(device, renderPass, nullptr);
+    }
     
     for (auto imageView : swapChainImageViews) {
         vkDestroyImageView(device, imageView, nullptr);

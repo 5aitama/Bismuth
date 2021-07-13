@@ -92,6 +92,10 @@ int main()
 		VulkanUtils::ImageViews::Init(app);
 		OK_MSG
 
+		Console::Log("> Setup render pass");
+		VulkanUtils::RenderPass::Init(app);
+		OK_MSG
+
 		Console::Log("> Setup graphics pipeline");
 		VulkanUtils::GraphicsPipeline::Init(app);
 		OK_MSG
