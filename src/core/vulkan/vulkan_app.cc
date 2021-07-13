@@ -1,6 +1,7 @@
 #include "vulkan_app.h"
 
-VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) { };
+VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) {
+};
 
 VulkanApp::~VulkanApp() {
     
@@ -8,9 +9,23 @@ VulkanApp::~VulkanApp() {
         vkDestroyImageView(device, imageView, nullptr);
     }
 
-    vkDestroySwapchainKHR(device, swapChain, nullptr);
-    vkDestroyDevice(device, nullptr);
-    vkDestroySurfaceKHR(instance, surface, nullptr);
-    DebugMessenger::DestroyDebugUtilsMessengerEXT(instance, callback, nullptr);
-    vkDestroyInstance(instance, nullptr);
+    if (swapChain != VK_NULL_HANDLE) {
+        vkDestroySwapchainKHR(device, swapChain, nullptr);
+    }
+
+    if (device != VK_NULL_HANDLE) {
+        vkDestroyDevice(device, nullptr);
+    }
+
+    if (surface != VK_NULL_HANDLE) {
+        vkDestroySurfaceKHR(instance, surface, nullptr);
+    }
+
+    if (callback != VK_NULL_HANDLE) {
+        DebugMessenger::DestroyDebugUtilsMessengerEXT(instance, callback, nullptr);
+    }
+
+    if (instance != VK_NULL_HANDLE) {
+        vkDestroyInstance(instance, nullptr);
+    }
 };

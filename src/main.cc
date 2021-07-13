@@ -1,38 +1,44 @@
 ﻿
 #include "main.h"
 
-using namespace std;
-
-const vector<const char*> GetValidationLayers() {
-	vector<const char*> validationLayers = {
-		"VK_LAYER_KHRONOS_validation"
+const std::vector<const char*> GetValidationLayers() {
+	std::vector<const char*> validationLayers = {
+		"VK_LAYER_KHRONOS_validation",
 	};
 
 	return validationLayers;
 }
 
-const vector<const char*> GetExtensions() {
+const std::vector<const char*> GetExtensions() {
 	uint32_t count;
 	const char** ext = glfwGetRequiredInstanceExtensions(&count);
 
-	vector<const char*> extensions(ext, ext + count);
+	std::vector<const char*> extensions(ext, ext + count);
 
 	#ifndef NDEBUG
 	extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 	#endif
 
+	#ifdef __APPLE__
+	extensions.push_back("VK_KHR_get_physical_device_properties2");
+	#endif
+
 	return extensions;
 }
 
-const vector<const char*> GetDeviceExtensions() {
-	return vector<const char*> {
+const std::vector<const char*> GetDeviceExtensions() {
+	return std::vector<const char*> {
 		VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+
+		#ifdef __APPLE__
+		"VK_KHR_portability_subset",
+		#endif
 	};
 }
 
 int main()
 {
-	cout << "Launch the app..." << endl;
+	std::cout << "Launch the app..." << std::endl;
 
 	auto appName = "My app";
 
@@ -90,15 +96,15 @@ int main()
 		VulkanUtils::GraphicsPipeline::Init(app);
 		OK_MSG
 
-		cout << "Start the main loop..." << endl;
+		std::cout << "Start the main loop..." << std::endl;
 		window.Loop();
 	}
 	catch(const std::exception& e) {
-		FAIL_MSG
-		std::cerr << e.what() << std::endl;
+		std::cerr << "\033[1;31mError : " << e.what() << "\033[0m" << std::endl;
+		return EXIT_FAILURE;
 	}
 
-	cout << "App closed !" << endl;
+	std::cout << "App closed !" << std::endl;
 
-	return 0;
+	return EXIT_SUCCESS;
 }

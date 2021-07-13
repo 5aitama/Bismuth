@@ -17,6 +17,14 @@ void PhysicalDevice::PickPhysicalDevice(VulkanApp& app) {
         if (IsDeviceSuitable(device, app.surface, app.deviceExtensions)) {
             app.physicalDevice = device;
             app.indices = FindQueueFamilies(device, app.surface);
+
+            #ifndef NDEBUG
+            VkPhysicalDeviceProperties properties;
+            vkGetPhysicalDeviceProperties(app.physicalDevice, &properties);
+
+            std::cout << "Selected gpu name : \033[1;34m" << properties.deviceName << "\033[0m" << std::endl;
+            #endif
+
             break;
         }
     }
@@ -24,13 +32,6 @@ void PhysicalDevice::PickPhysicalDevice(VulkanApp& app) {
     if (app.physicalDevice == VK_NULL_HANDLE) {
         throw std::runtime_error("There is no suitable gpu for this app !");
     }
-
-    #ifndef NDEBUG
-    VkPhysicalDeviceProperties properties;
-    vkGetPhysicalDeviceProperties(app.physicalDevice, &properties);
-
-    std::cout << "Selected gpu name : \033[1;34m" << properties.deviceName << "\033[0m" << std::endl;
-    #endif
 }
 
 const bool PhysicalDevice::IsDeviceSuitable(const VkPhysicalDevice& device, const VkSurfaceKHR& surface, const std::vector<const char*>& extensions) {
@@ -48,8 +49,9 @@ const bool PhysicalDevice::IsDeviceSuitable(const VkPhysicalDevice& device, cons
         auto swapChainSupport = SwapChainSupportDetails::QuerySwapChainSupport(device, surface);
         swapChainAdequate = !swapChainSupport.formats.empty() && !swapChainSupport.presentModes.empty();
     }
-
-    return deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU && indices.IsComplete() && extensionsSupported && swapChainAdequate;
+    
+    // deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU
+    return indices.IsComplete() && extensionsSupported && swapChainAdequate;
 }
 
 const bool PhysicalDevice::CheckDeviceExtensionSupport(const VkPhysicalDevice& device, const std::vector<const char*>& extensions) {
