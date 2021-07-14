@@ -6,10 +6,12 @@
 #define GLFW_INCLUDE_VULKAN
 #endif
 #include <GLFW/glfw3.h>
+#include "../vulkan/vulkan_app.h"
 
 struct Window {
 private:
 	GLFWwindow* window = nullptr;
+	size_t currentFrame = 0;
 
 public:
 	/**
@@ -30,5 +32,7 @@ public:
 	/**
 	 * @brief Start the window's main loop.
 	 */
-	const void Loop() const;
+	const void Loop(VulkanApp& app);
+
+	const void DrawFrame(VulkanApp& app);
 };

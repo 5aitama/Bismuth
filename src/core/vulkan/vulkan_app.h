@@ -9,6 +9,7 @@
 #include "debug_msg.h"
 #include "queue_family_indices.h"
 
+constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
 /**
  * @brief Contains all data that was necessary for a Vulkan Application.
@@ -53,6 +54,12 @@ struct VulkanApp {
     VkCommandPool       commandPool     = VK_NULL_HANDLE;
 
     std::vector<VkCommandBuffer> commandBuffers;
+
+    std::vector<VkSemaphore> imageAvailableSemaphores;
+    std::vector<VkSemaphore> renderFinishedSemaphores;
+
+    std::vector<VkFence> inFlightFences;
+    std::vector<VkFence> imagesInFlight;
 
     VulkanApp(const char* app_name);
     ~VulkanApp();

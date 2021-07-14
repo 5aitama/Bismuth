@@ -4,6 +4,21 @@ VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) {
 };
 
 VulkanApp::~VulkanApp() {
+
+    for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+        if (renderFinishedSemaphores[i] != VK_NULL_HANDLE) {
+            vkDestroySemaphore(device, renderFinishedSemaphores[i], nullptr);
+        }
+
+        if (imageAvailableSemaphores[i] != VK_NULL_HANDLE) {
+            vkDestroySemaphore(device, imageAvailableSemaphores[i], nullptr);
+        }
+
+        if (inFlightFences[i] != VK_NULL_HANDLE) {
+            vkDestroyFence(device, inFlightFences[i], nullptr);
+        }
+    }
+
     if (commandPool != VK_NULL_HANDLE) {
         vkDestroyCommandPool(device, commandPool, nullptr);
     }

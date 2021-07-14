@@ -112,8 +112,12 @@ int main()
 		VulkanUtils::CommandBuffers::Init(app);
 		OK_MSG
 
+		Console::Log("> Setup semaphores");
+		VulkanUtils::Semaphores::Init(app);
+		OK_MSG
+
 		std::cout << "Start the main loop..." << std::endl;
-		window.Loop();
+		window.Loop(app);
 	}
 	catch(const std::exception& e) {
 		std::cerr << "\033[1;31mError : " << e.what() << "\033[0m" << std::endl;
