@@ -1,12 +1,11 @@
 # Bismuth
+![](https://img.shields.io/badge/Windows-Compatible-green)
+![](https://img.shields.io/badge/macOS-Compatible-green)
+![](https://img.shields.io/badge/Linux-Unknow-lightgrey)
+
 Bismuth is a little home made graphics engine made for learn vulkan and experiment things...
 
 ![](img/screenshot.png)
-
-## Compatibility
-| Windows | macOS | Linux          |
-|---------|-------|----------------|
-| ✅       | ✅    | ⚠️ (not tested) |
 
 ## Requirement
 - Compiler that support C++ 17 or above
