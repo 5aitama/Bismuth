@@ -18,3 +18,4 @@
 #include "core/vulkan/render_pass.h"
 #include "core/vulkan/graphics_pipeline.h"
 #include "core/vulkan/framebuffers.h"
+#include "core/vulkan/command_pool.h"

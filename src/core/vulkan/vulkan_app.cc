@@ -4,6 +4,9 @@ VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) {
 };
 
 VulkanApp::~VulkanApp() {
+    if (commandPool != VK_NULL_HANDLE) {
+        vkDestroyCommandPool(device, commandPool, nullptr);
+    }
 
     for (auto framebuffer : swapChainFramebuffers) {
         vkDestroyFramebuffer(device, framebuffer, nullptr);
