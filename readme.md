@@ -1,4 +1,4 @@
-# Bismuth Engine
+# Bismuth
 Bismuth is a little home made graphics engine made for learn vulkan and experiment things...
 
 ![](img/screenshot.png)
