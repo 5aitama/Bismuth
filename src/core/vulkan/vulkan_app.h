@@ -34,6 +34,7 @@ struct VulkanApp {
 
     std::vector<VkImage>        swapChainImages;
     std::vector<VkImageView>    swapChainImageViews;
+    std::vector<VkFramebuffer>  swapChainFramebuffers;
     VkFormat                    swapChainImageFormat;
     VkExtent2D                  swapChainExtent;
 
@@ -45,9 +46,9 @@ struct VulkanApp {
     VkSurfaceKHR        surface         = VK_NULL_HANDLE;
     VkSwapchainKHR      swapChain       = VK_NULL_HANDLE;
 
-    VkRenderPass        renderPass      = VK_NULL_HANDLE;
-    VkPipelineLayout    pipelineLayout  = VK_NULL_HANDLE;
-    VkPipeline          graphicsPipeline = VK_NULL_HANDLE;
+    VkRenderPass        renderPass          = VK_NULL_HANDLE;
+    VkPipelineLayout    pipelineLayout      = VK_NULL_HANDLE;
+    VkPipeline          graphicsPipeline    = VK_NULL_HANDLE;
 
     VulkanApp(const char* app_name);
     ~VulkanApp();

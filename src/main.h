@@ -17,3 +17,4 @@
 #include "core/vulkan/image_views.h"
 #include "core/vulkan/render_pass.h"
 #include "core/vulkan/graphics_pipeline.h"
+#include "core/vulkan/framebuffers.h"

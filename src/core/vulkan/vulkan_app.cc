@@ -4,6 +4,11 @@ VulkanApp::VulkanApp(const char* app_name) : app_name(app_name) {
 };
 
 VulkanApp::~VulkanApp() {
+
+    for (auto framebuffer : swapChainFramebuffers) {
+        vkDestroyFramebuffer(device, framebuffer, nullptr);
+    }
+
     if (graphicsPipeline != VK_NULL_HANDLE) {
         vkDestroyPipeline(device, graphicsPipeline, nullptr);
     }

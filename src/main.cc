@@ -100,6 +100,10 @@ int main()
 		VulkanUtils::GraphicsPipeline::Init(app);
 		OK_MSG
 
+		Console::Log("> Setup framebuffers");
+		VulkanUtils::Framebuffers::Init(app);
+		OK_MSG
+
 		std::cout << "Start the main loop..." << std::endl;
 		window.Loop();
 	}
