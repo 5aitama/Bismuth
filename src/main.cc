@@ -108,6 +108,10 @@ int main()
 		VulkanUtils::CommandPool::Init(app);
 		OK_MSG
 
+		Console::Log("> Setup command buffers");
+		VulkanUtils::CommandBuffers::Init(app);
+		OK_MSG
+
 		std::cout << "Start the main loop..." << std::endl;
 		window.Loop();
 	}

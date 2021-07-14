@@ -52,6 +52,8 @@ struct VulkanApp {
 
     VkCommandPool       commandPool     = VK_NULL_HANDLE;
 
+    std::vector<VkCommandBuffer> commandBuffers;
+
     VulkanApp(const char* app_name);
     ~VulkanApp();
 };
