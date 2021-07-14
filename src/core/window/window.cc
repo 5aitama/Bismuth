@@ -36,6 +36,7 @@ const void Window::Loop(VulkanApp& app) {
 }
 
 const void Window::DrawFrame(VulkanApp& app) {
+    vkWaitForFences(app.device, 1, &app.inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
     vkAcquireNextImageKHR(app.device, app.swapChain, UINT64_MAX, app.imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &imageIndex);
