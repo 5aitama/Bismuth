@@ -1,6 +1,8 @@
 # Bismuth Engine
 Bismuth is a little home made graphics engine made for learn vulkan and experiment things...
 
+![](img/screenshot.png)
+
 ## Requirement
 - Compiler that support C++ 17 or above
 - [CMake](https://cmake.org/download/) v3.8 or above
