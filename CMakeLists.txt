@@ -11,6 +11,7 @@ file(GLOB_RECURSE H_FILES ${CMAKE_SOURCE_DIR}/src/**.h)
 
 # Search the Vulkan package...
 find_package(Vulkan REQUIRED)
+find_library(SHADERC_LIB shaderc_combined)
 
 find_program(GLSLC glslc REQUIRED)
 
@@ -42,6 +43,7 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC glm
     PUBLIC glfw
     PUBLIC ${Vulkan_LIBRARIES}
+    PUBLIC ${SHADERC_LIB}
 )
 
 file(GLOB_RECURSE GLSL_SOURCE_FILES

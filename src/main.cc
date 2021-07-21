@@ -116,6 +116,12 @@ int main()
 		VulkanUtils::Semaphores::Init(app);
 		OK_MSG
 
+		Bismuth::Shader test_shader(
+			"../src/shaders/triangle/triangle.vert", 
+			"../src/shaders/triangle/triangle.frag",
+			app.device
+		);
+
 		std::cout << "Start the main loop..." << std::endl;
 		window.Loop(app);
 	}

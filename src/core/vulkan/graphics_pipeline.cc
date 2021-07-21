@@ -3,13 +3,16 @@
 using namespace VulkanUtils;
 
 void GraphicsPipeline::Init(VulkanApp& app) {
-    auto vertShader = Shader("shaders/triangle.vert.spv", app.device);
-    auto fragShader = Shader("shaders/triangle.frag.spv", app.device);
+    auto shader = Bismuth::Shader(
+        "../src/shaders/triangle/triangle.vert", 
+		"../src/shaders/triangle/triangle.frag", 
+        app.device
+    );
 
     VkPipelineShaderStageCreateInfo vertShaderStageInfo {
         .sType                  = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
         .stage                  = VK_SHADER_STAGE_VERTEX_BIT,
-        .module                 = vertShader.shaderModule,
+        .module                 = shader.GetVertexShaderModule(),
         .pName                  = "main",
         .pSpecializationInfo    = nullptr,
     };
@@ -17,7 +20,7 @@ void GraphicsPipeline::Init(VulkanApp& app) {
     VkPipelineShaderStageCreateInfo fragShaderStageInfo {
         .sType                  = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
         .stage                  = VK_SHADER_STAGE_FRAGMENT_BIT,
-        .module                 = fragShader.shaderModule,
+        .module                 = shader.GetFragmentShaderModule(),
         .pName                  = "main",
         .pSpecializationInfo    = nullptr,
     };

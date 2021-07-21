@@ -26,6 +26,7 @@ Shader::~Shader() {
 }
 
 VkShaderModule Shader::CreateShaderModule(const std::vector<char>& bytecode, const VkDevice& device) {
+    std::cout << bytecode.size() << std::endl;
     VkShaderModuleCreateInfo createInfo {
         .sType      = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
         .codeSize   = bytecode.size(),
